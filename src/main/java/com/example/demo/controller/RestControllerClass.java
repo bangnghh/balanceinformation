@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -18,6 +20,8 @@ public class RestControllerClass {
     private byte[] result = new byte[0];
     private InputStream is;
     private GenericPackager packager;
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
 
     @GetMapping("/hello")
     public String One() {
@@ -32,6 +36,7 @@ public class RestControllerClass {
         resultMap.put("account_type", "NCBStaff");
         resultMap.put("account_status", "active");
         resultMap.put("balance", "1246000");
+        resultMap.put("from_date",dtf.format(now).toString());
         resultMap.put("working_balance", "950000");
         return resultMap;
     }
