@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 @RestController
-
+@CrossOrigin()
 @RequestMapping("/balanceAPI")
 public class RestControllerClass {
     private byte[] result = new byte[0];
