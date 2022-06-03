@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin()
@@ -27,6 +28,8 @@ public class RestControllerClass {
 
     @PostMapping("/checkbalance")
     public HashMap<String, String> Balance(@RequestBody RequestModel requestModel) {
+        int balance = 9000000;
+
         HashMap<String, String> resultMap = new HashMap<>();
         resultMap.put("bank_id", requestModel.getBank_id());
         resultMap.put("customer_id", requestModel.getCustomer_id());
@@ -34,7 +37,7 @@ public class RestControllerClass {
         resultMap.put("account_name", "Nguyen Hoang Anh");
         resultMap.put("account_type", "VPBStaff");
         resultMap.put("account_status", "active");
-        resultMap.put("balance", "9000000");
+        resultMap.put("balance", balance+"");
         resultMap.put("working_balance", "7200000");
         resultMap.put("query_time",dtf.format(now).toString());
         resultMap.put("signature", requestModel.getSignature());
