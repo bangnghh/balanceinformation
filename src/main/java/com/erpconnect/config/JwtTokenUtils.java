@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.erpconnect.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

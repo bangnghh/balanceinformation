@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.erpconnect.controller;
 
-import com.example.demo.config.JwtTokenUtils;
-import com.example.demo.model.JwtRequest;
-import com.example.demo.model.JwtResponse;
+import com.erpconnect.config.JwtTokenUtils;
+import com.erpconnect.model.JwtRequest;
+import com.erpconnect.model.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

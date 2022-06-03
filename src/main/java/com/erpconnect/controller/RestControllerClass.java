@@ -1,5 +1,6 @@
-package com.example.demo.controller;
+package com.erpconnect.controller;
 
+import com.erpconnect.model.RequestModel;
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOMsg;
 import org.jpos.iso.ISOUtil;
@@ -12,10 +13,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @CrossOrigin()
-@RequestMapping("/balanceAPI")
+@RequestMapping("/balance/v1")
 public class RestControllerClass {
     private byte[] result = new byte[0];
     private InputStream is;
@@ -23,21 +25,19 @@ public class RestControllerClass {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
 
-    @GetMapping("/hello")
-    public String One() {
-        return "Hello world";
-    }
-
-    @PostMapping("/balanceinfo")
-    public HashMap<String, String> Balance(@RequestParam String accountID) {
+    @PostMapping("/checkbalance")
+    public HashMap<String, String> Balance(@RequestBody RequestModel requestModel) {
         HashMap<String, String> resultMap = new HashMap<>();
-        resultMap.put("account_id", accountID);
-        resultMap.put("account_name", "Nguyen Van A");
-        resultMap.put("account_type", "NCBStaff");
+        resultMap.put("bank_id", requestModel.getBank_id());
+        resultMap.put("customer_id", requestModel.getCustomer_id());
+        resultMap.put("account_id", requestModel.getAccount_id());
+        resultMap.put("account_name", "Nguyen Hoang Anh");
+        resultMap.put("account_type", "VPBStaff");
         resultMap.put("account_status", "active");
-        resultMap.put("balance", "1246000");
-        resultMap.put("from_date",dtf.format(now).toString());
-        resultMap.put("working_balance", "950000");
+        resultMap.put("balance", "9000000");
+        resultMap.put("working_balance", "7200000");
+        resultMap.put("query_time",dtf.format(now).toString());
+        resultMap.put("signature", requestModel.getSignature());
         return resultMap;
     }
 
