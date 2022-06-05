@@ -1,6 +1,7 @@
 package com.erpconnect.controller;
 
 import com.erpconnect.model.RequestModel;
+import com.erpconnect.model.ResponseModel;
 import org.jpos.iso.ISOException;
 import org.jpos.iso.ISOMsg;
 import org.jpos.iso.ISOUtil;
@@ -13,8 +14,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @CrossOrigin()
@@ -27,21 +26,22 @@ public class RestControllerClass {
     LocalDateTime now = LocalDateTime.now();
 
     @PostMapping("/checkbalance")
-    public HashMap<String, String> Balance(@RequestBody RequestModel requestModel) {
+    public ResponseModel Balance(@RequestBody RequestModel requestModel) {
         int balance = 9000000;
 
-        HashMap<String, String> resultMap = new HashMap<>();
-        resultMap.put("bank_id", requestModel.getBank_id());
-        resultMap.put("customer_id", requestModel.getCustomer_id());
-        resultMap.put("account_id", requestModel.getAccount_id());
-        resultMap.put("account_name", "Nguyen Hoang Anh");
-        resultMap.put("account_type", "VPBStaff");
-        resultMap.put("account_status", "active");
-        resultMap.put("balance", balance+"");
-        resultMap.put("working_balance", "7200000");
-        resultMap.put("query_time",dtf.format(now).toString());
-        resultMap.put("signature", requestModel.getSignature());
-        return resultMap;
+        ResponseModel responseModel = new ResponseModel();
+        responseModel.setBank_id(requestModel.getBank_id());
+        responseModel.setCustomer_id(requestModel.getCustomer_id());
+        responseModel.setAccount_id(requestModel.getAccount_id());
+        responseModel.setAccount_name("Nguyen Hoang Anh");
+        responseModel.setAccount_type("VPBankStaff");
+        responseModel.setAccount_status("active");
+        responseModel.setBalance(balance);
+        responseModel.setWorking_balance(7200000);
+        responseModel.setQuery_time(dtf.format(now).toString());
+        responseModel.setSignature(requestModel.getSignature());
+
+        return responseModel;
     }
 
     @GetMapping("/iso8583")
