@@ -14,8 +14,8 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //$2a$12$FD/6DoGYRIqiwCr5VMkkm.2x2BC7jvU/M9oWFVbEHzvbkx8GAv2O6 = "encodedpass"
-        if ("bangnghh".equals(username)) {
-            return new User("bangnghh", "$2a$12$17qBTPJC4pwfcSGoB3Qa1.gR0WOJWlJdSFZooiepYo8ass.9JUUcG",
+        if ("erpconnect".equals(username)) {
+            return new User("erpconnect", "$2a$12$17qBTPJC4pwfcSGoB3Qa1.gR0WOJWlJdSFZooiepYo8ass.9JUUcG",
                     new ArrayList<>());
         } else {
             System.out.println("User not found with username: " + username);
