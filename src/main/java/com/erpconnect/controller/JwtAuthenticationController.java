@@ -3,6 +3,7 @@ package com.erpconnect.controller;
 import com.erpconnect.config.JwtTokenUtils;
 import com.erpconnect.model.JwtRequest;
 import com.erpconnect.model.JwtResponse;
+import com.erpconnect.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,7 +27,7 @@ public class JwtAuthenticationController {
     private JwtTokenUtils jwtTokenUtil;
 
     @Autowired
-    private UserDetailsService jwtInMemoryUserDetailsService;
+    private JwtUserDetailsService jwtInMemoryUserDetailsService;
 
     @PostMapping("/authenticate")
     public ResponseEntity<?> generateAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
